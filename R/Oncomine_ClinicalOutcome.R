@@ -1,12 +1,12 @@
 #' To clear Oncomine data for Clinical Outcome data
 #'
 #' @param filenames The filenames that your data stored in. if ONLY data files in your working directory this object can be omitted.
-#'
+#' @param NoValue a logistic value
 #' @return a dataframe
 #' @export
 #'
 #' @examples Oncomine_ClinicalOutcome()
-Oncomine_ClinicalOutcome<-function(filenames){
+Oncomine_ClinicalOutcome<-function(filenames,NoValue=TRUE){
   if (missing(filenames)){
     filenames=list.files()
   }
@@ -19,11 +19,19 @@ Oncomine_ClinicalOutcome<-function(filenames){
       ONAME=sub(pattern = "\\..*",replacement = "",x = filenames[i])
       if (i==1){
         Osurvival.1=Oncomine_bar(filenames[i])
-        survival.i=Osurvival.1[!(Osurvival.1$`Legend Value`=="No value"),]
+        if (NoValue==FALSE){
+          survival.i=Osurvival.1[!(Osurvival.1$`Legend Value`=="No value"),]
+        }else if (NoValue==TRUE){
+          survival.i=Osurvival.1
+        }
         colnames(survival.i)[grep(pattern = "Legend Value",x = colnames(survival.i))]=ONAME
       }else if (i>1){
         Osurvival.i=Oncomine_bar(filenames[i])
-        Osurvival.i2=Osurvival.i[!(Osurvival.i$`Legend Value`=="No value"),]
+        if (NoValue==FALSE){
+          Osurvival.i2=Osurvival.i[!(Osurvival.i$`Legend Value`=="No value"),]
+        }else if(NoValue==TRUE){
+          Osurvival.i2=Osurvival.i
+        }
         Osurvival.i4=Osurvival.i2[,c(grep(pattern = "Sample Name",x = colnames(Osurvival.i2)),
                                      grep(pattern = "Legend Value",x = colnames(Osurvival.i2)))]
         colnames(Osurvival.i4)[grep("Legend Value",colnames(Osurvival.i4))]=ONAME

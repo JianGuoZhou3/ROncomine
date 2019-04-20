@@ -4,10 +4,12 @@
 \alias{Oncomine_ClinicalOutcome}
 \title{To clear Oncomine data for Clinical Outcome data}
 \usage{
-Oncomine_ClinicalOutcome(filenames)
+Oncomine_ClinicalOutcome(filenames, NoValue = TRUE)
 }
 \arguments{
 \item{filenames}{The filenames that your data stored in. if ONLY data files in your working directory this object can be omitted.}
+
+\item{NoValue}{a logistic value}
 }
 \value{
 a dataframe

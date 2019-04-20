@@ -19,17 +19,17 @@ Oncomine_SampleFilters<-function(filenames,NoValue=TRUE){
       ONAME=sub(pattern = "\\..*",replacement = "",x = filenames[i])
       if (i==1){
         Osurvival.1=Oncomine_bar(filenames[i])
-        if (NoValue==TRUE){
+        if (NoValue==FALSE){
           survival.i=Osurvival.1[!(Osurvival.1$`Legend Value`=="No value"),]
-        }else if (NoValue==FALSE){
+        }else if (NoValue==TRUE){
           survival.i=Osurvival.1
         }
         colnames(survival.i)[grep(pattern = "Legend Value",x = colnames(survival.i))]=ONAME
       }else if (i>1){
         Osurvival.i=Oncomine_bar(filenames[i])
-        if (NoValue==TRUE){
+        if (NoValue==FALSE){
           Osurvival.i2=Osurvival.i[!(Osurvival.i$`Legend Value`=="No value"),]
-        }else if(NoValue==FALSE){
+        }else if(NoValue==TRUE){
           Osurvival.i2=Osurvival.i
         }
         Osurvival.i4=Osurvival.i2[,c(grep(pattern = "Sample Name",x = colnames(Osurvival.i2)),

@@ -186,7 +186,12 @@ Oncomine_bar <- function(filename,label_zero=TRUE){
       return(finaldatacombine)
     }else{
       rownames(finaldatatrue2)=1:nrow(finaldatatrue2)
-      finaldatatrue2[,"Expression value"]=as.numeric(as.character(finaldatatrue2[,"Expression value"]))
+      if ("Expression value" %in% colnames(finaldatatrue2)){
+        finaldatatrue2[,"Expression value"]=as.numeric(as.character(finaldatatrue2[,"Expression value"]))
+      }
+      if ("Copy Number value" %in% colnames(finaldatatrue2)){
+        finaldatatrue2[,"Copy Number value"]=as.numeric(as.character(finaldatatrue2[,"Copy Number value"]))
+      }
       return(finaldatatrue2)
     }
   }

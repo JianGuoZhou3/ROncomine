@@ -19,7 +19,7 @@ Oncomine_SurvAnalysis.Data<-function(
   x
 ){
   #tran to matrix
-  colnameD=c(Time,Outcome,x)
+  colnameD=c("Sample Name",Time,Outcome,x)
   data=na.omit(data)
   data1=as.matrix(data[,colnameD])
   #missing value
@@ -31,7 +31,7 @@ Oncomine_SurvAnalysis.Data<-function(
   #tran expression to 1 and 0
   data2[,x]=ifelse(grepl("-",data2[,x]),"Low","High")
   dataf=data.frame(na.omit(data2))
-  colnames(dataf)=c("Time","Outcome","Expression")
+  colnames(dataf)=c("Sample Name","Time","Outcome","Expression")
   dataf[,"Time"]=as.numeric(as.character(dataf[,"Time"]))
   dataf[,"Outcome"]=as.numeric(as.character(dataf[,"Outcome"]))
   return(dataf)
